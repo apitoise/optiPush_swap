@@ -41,12 +41,13 @@ typedef struct	s_stack
 {
 	t_elem*	elem;
 	int		len;
-	int		action;
 	char	name;
 }				t_stack;
 
 int		check_arg(int arg_nb, char** args, t_stack* a);
 void	do_algo(t_stack* a, t_stack* b);
+void	two_args(t_stack* a);
+void	three_args(t_stack* a);
 void	exec_best(t_stack* a, t_stack* b, int id);
 
 void		calculate_best(t_stack* a);
@@ -65,5 +66,6 @@ void	do_rotate(t_stack* stack);
 void	double_rotate(t_stack* a, t_stack* b);
 void	do_reverse_rotate(t_stack* stack);
 void	double_reverse_rotate(t_stack* a, t_stack* b);
+void	do_swap(t_stack* stack);
 
 #endif

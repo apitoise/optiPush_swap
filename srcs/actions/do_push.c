@@ -17,7 +17,6 @@ void	do_push(t_stack* src, t_stack* dst)
 {
 	int	i;
 	
-	src->action++;
 	if (src->name == 'a')
 		ft_putstr_fd("pb\n", 1);
 	else
@@ -41,18 +40,3 @@ void	do_push(t_stack* src, t_stack* dst)
 		i++;
 	}
 }
-//	int i = 0;
-//	while (i < a->len)
-//	{
-//		printf("[%d]", a->nbr[i]);
-//		i++;
-//	}
-//	printf(" || ");
-//	i = 0;
-//	while (i < b->len)
-//	{
-//		printf("[%d]", b->nbr[i]);
-//		i++;
-//	}
-//	printf("\n");
-

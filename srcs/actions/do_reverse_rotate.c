@@ -18,7 +18,6 @@ void	do_reverse_rotate(t_stack *stack)
 	int	copy;
 	int	i;
 
-	stack->action++;
 	if (stack->name == 'a')
 		ft_putstr_fd("rra\n", 1);
 	else

@@ -36,6 +36,7 @@ SRCS = srcs/main_func/main.c \
 		srcs/actions/do_reverse_rotate.c \
 		srcs/actions/do_rotate.c \
 		srcs/actions/do_push.c \
+		srcs/actions/do_swap.c
 
 OBJS = $(SRCS:.c=.o)
 

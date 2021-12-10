@@ -20,6 +20,39 @@
 		printf("[%d] {%d, %d, %d, %d} best: %d best_nbr: %d | [%d] {%d, %d, %d, %d} best: %d best_nbr: %d\n", a->elem[i].nb, a->elem[i].rot_min[0], a->elem[i].rot_min[1], a->elem[i].rot_min[2], a->elem[i].rot_min[3], a->elem[i].best, a->elem[i].best_nb, b->elem[i].nb, b->elem[i].rot_min[0], b->elem[i].rot_min[1], b->elem[i].rot_min[2], b->elem[i].rot_min[3], b->elem[i].best, b->elem[i].best_nb);}
 }
 */
+void	two_args(t_stack *a)
+{
+	if (a->elem[0].nb > a->elem[1].nb)
+		do_rotate(a);
+	else
+		return ;
+}
+
+void	three_args(t_stack *a)
+{
+	if (a->elem[0].nb > a->elem[1].nb && a->elem[1].nb < a->elem[2].nb)
+	{
+		if (a->elem[0].nb < a->elem[2].nb)
+			do_swap(a);
+		else
+			do_rotate(a);
+	}
+	else if (a->elem[0].nb > a->elem[1].nb && a->elem[1].nb > a->elem[2].nb)
+	{
+		do_swap(a);
+		do_reverse_rotate(a);
+	}
+	else if (a->elem[0].nb < a->elem[1].nb && a->elem[1].nb > a->elem[2].nb)
+	{
+		if (a->elem[0].nb < a->elem[2].nb)
+		{
+			do_swap(a);
+			do_rotate(a);
+		}
+		else
+			do_reverse_rotate(a);
+	}
+}
 static void	put_min_on_top(t_stack* stack)
 {
 	int	opt;
@@ -81,5 +114,4 @@ void	do_algo(t_stack* a, t_stack* b)
 		new_rot_min(a, b);
 	}
 	put_min_on_top(a);
-//	print_piles(a, b, len);
 }

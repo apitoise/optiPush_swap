@@ -40,7 +40,11 @@ static void	push_swap(t_stack* a, t_stack* b)
 {
 	if (a->len == 1)
 		return ;
-	else if (a->len > 3)
+	else if (a->len == 2)
+		two_args(a);
+	else if (a->len == 3)
+		three_args(a);
+	else
 		do_algo(a, b);
 }
 
@@ -52,6 +56,8 @@ int			main(int ac, char **av)
 
 	if (ac == 2)
 	{
+		av[0] = ft_strjoin(av[0], " ");
+		av[1] = ft_strjoin(av[0], av[1]);
 		av = ft_split(av[1], ' ');
 		i = 1;
 		ac = 1;
