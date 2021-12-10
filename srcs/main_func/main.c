@@ -61,6 +61,7 @@ static char	**one_param(int *ac, char **av, int *i)
 	(*i) = 1;
 	while (av[(*i)++])
 		(*ac)++;
+	(*i) = 0;
 	return (av);
 }
 
