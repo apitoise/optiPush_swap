@@ -20,8 +20,6 @@ INC = header/push_swap.h
 
 CFLAGS = -Wall -Wextra -Werror
 
-DIR_O = objs
-
 SRCS = srcs/main_func/main.c \
 		srcs/main_func/algo.c \
 		srcs/main_func/check_arg.c \
@@ -45,12 +43,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 			make -C libft/
-			mkdir -p objs
 			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB)
-			mv srcs/*/*.o objs 
 
 clean: 
-		rm -rf $(DIR_O)
 		make clean -C libft/
 
 fclean: clean

@@ -1,4 +1,5 @@
 *.swp
 *.o
 /objs
+libft/libft.a`
 push_swap
