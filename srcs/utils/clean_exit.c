@@ -15,10 +15,8 @@
 
 int	clean_exit(t_stack *a, t_stack *b)
 {
-	(void)a;
-	(void)b;
-//	free(a->elem);
-//	free(b->elem);
+	free(a->elem);
+	free(b->elem);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

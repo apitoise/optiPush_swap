@@ -52,17 +52,21 @@ int			main(int ac, char **av)
 {
 	t_stack	a;
 	t_stack	b;
-	int		i;
+	char*	tmp;
+	int	i;
 
+	i = 1;
 	if (ac == 2)
 	{
 		av[0] = ft_strjoin(av[0], " ");
-		av[1] = ft_strjoin(av[0], av[1]);
-		av = ft_split(av[1], ' ');
-		i = 1;
+		tmp = ft_strjoin(av[0], av[1]);
+		free(av[0]);
+		av = ft_split(tmp, ' ');
+		free(tmp);
 		ac = 1;
 		while (av[i++])
 			ac++;
+		i = -1;
 	}
 	a.len = 0;
 	b.len = 0;
@@ -75,5 +79,12 @@ int			main(int ac, char **av)
 	if (!(init_stack(&a, &b, av)))
 		return (0);
 	push_swap(&a, &b);
+	if (i < 0)
+	{
+		i = -1;
+		while (av[++i])
+			free(av[i]);
+		free(av);
+	}
 	return (clean_exit(&a, &b));
 }
