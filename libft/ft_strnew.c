@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/06 11:06:05 by cnotin            #+#    #+#             */
-/*   Updated: 2019/12/06 11:06:16 by cnotin           ###   ########.fr       */
+/*   Created: 2020/06/29 19:36:46 by cnotin            #+#    #+#             */
+/*   Updated: 2021/06/14 12:32:50 by lgimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+char	*ft_strnew(size_t size)
 {
-	return (c >= 0 && c <= 127);
+	char	*ptr;
+
+	ptr = (char *)malloc(sizeof(*ptr) * ((int)size) + 1);
+	ft_bzero(ptr, size + 1);
+	return (ptr);
 }

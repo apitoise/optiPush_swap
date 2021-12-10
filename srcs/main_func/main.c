@@ -13,14 +13,14 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-static int	init_stack(t_stack* a, t_stack* b, char** args)
+static int	init_stack(t_stack *a, t_stack *b, char **args)
 {
 	int	i;
 
-	a->elem = (t_elem*)malloc(sizeof(t_elem) * a->len);
+	a->elem = (t_elem *)malloc(sizeof(t_elem) * a->len);
 	if (!a->elem)
 		return (0);
-	b->elem = (t_elem*)malloc(sizeof(t_elem) * a->len);
+	b->elem = (t_elem *)malloc(sizeof(t_elem) * a->len);
 	if (!b->elem)
 		return (0);
 	i = 0;
@@ -36,7 +36,7 @@ static int	init_stack(t_stack* a, t_stack* b, char** args)
 	return (1);
 }
 
-static void	push_swap(t_stack* a, t_stack* b)
+static void	push_swap(t_stack *a, t_stack *b)
 {
 	if (a->len == 1)
 		return ;
@@ -48,26 +48,30 @@ static void	push_swap(t_stack* a, t_stack* b)
 		do_algo(a, b);
 }
 
-int			main(int ac, char **av)
+static char	**one_param(int *ac, char **av, int *i)
+{
+	char	*tmp;
+
+	av[0] = ft_strjoin(av[0], " ");
+	tmp = ft_strjoin(av[0], av[1]);
+	free(av[0]);
+	av = ft_split(tmp, ' ');
+	free(tmp);
+	(*ac) = 1;
+	(*i) = 1;
+	while (av[(*i)++])
+		(*ac)++;
+	return (av);
+}
+
+int	main(int ac, char **av)
 {
 	t_stack	a;
 	t_stack	b;
-	char*	tmp;
-	int	i;
+	int		i;
 
-	i = 1;
 	if (ac == 2)
-	{
-		av[0] = ft_strjoin(av[0], " ");
-		tmp = ft_strjoin(av[0], av[1]);
-		free(av[0]);
-		av = ft_split(tmp, ' ');
-		free(tmp);
-		ac = 1;
-		while (av[i++])
-			ac++;
-		i = -1;
-	}
+		av = one_param(&ac, av, &i);
 	a.len = 0;
 	b.len = 0;
 	a.name = 'a';
@@ -79,7 +83,7 @@ int			main(int ac, char **av)
 	if (!(init_stack(&a, &b, av)))
 		return (0);
 	push_swap(&a, &b);
-	if (i < 0)
+	if (!i)
 	{
 		i = -1;
 		while (av[++i])

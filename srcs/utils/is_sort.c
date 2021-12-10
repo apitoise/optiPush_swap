@@ -13,7 +13,7 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-int	is_sort(t_stack* a, int len)
+int	is_sort(t_stack *a, int len)
 {
 	int	i;
 

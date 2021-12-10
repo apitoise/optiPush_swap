@@ -13,7 +13,7 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-static int	get_min(int min, int rr, int rrr, int* stack_best)
+static int	get_min(int min, int rr, int rrr, int *stack_best)
 {
 	int	best;
 
@@ -34,7 +34,7 @@ static int	get_min(int min, int rr, int rrr, int* stack_best)
 	return (best);
 }
 
-void		calculate_best(t_stack* stack)
+void	calculate_best(t_stack *stack)
 {
 	int	rr;
 	int	rrr;
@@ -45,7 +45,7 @@ void		calculate_best(t_stack* stack)
 	while (i < stack->len)
 	{
 		if (stack->elem[i].rot_min[0] + stack->elem[i].rot_min[3]
-		< stack->elem[i].rot_min[1] + stack->elem[i].rot_min[2])
+			< stack->elem[i].rot_min[1] + stack->elem[i].rot_min[2])
 			min = stack->elem[i].rot_min[0] + stack->elem[i].rot_min[3];
 		else
 			min = stack->elem[i].rot_min[1] + stack->elem[i].rot_min[2];

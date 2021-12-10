@@ -13,10 +13,10 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-void	do_push(t_stack* src, t_stack* dst)
+void	do_push(t_stack *src, t_stack *dst)
 {
 	int	i;
-	
+
 	if (src->name == 'a')
 		ft_putstr_fd("pb\n", 1);
 	else

@@ -13,7 +13,7 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-static int	check_doublon(int arg_nb, char** args)
+static int	check_doublon(int arg_nb, char **args)
 {
 	int	i;
 	int	j;
@@ -54,7 +54,7 @@ static int	is_digit_str(char *str)
 	return (0);
 }
 
-int			check_arg(int arg_nb, char **args, t_stack *a)
+int	check_arg(int arg_nb, char **args, t_stack *a)
 {
 	int			i;
 	long long	nbr;

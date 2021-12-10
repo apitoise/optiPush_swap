@@ -13,7 +13,7 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-int	id_max(t_stack* stack)
+int	id_max(t_stack *stack)
 {
 	int	i;
 	int	max;
@@ -34,7 +34,7 @@ int	id_max(t_stack* stack)
 	return (id);
 }
 
-int	id_min(t_stack* stack)
+int	id_min(t_stack *stack)
 {
 	int	i;
 	int	min;
@@ -77,7 +77,7 @@ int	closer_min(t_stack *stack, int nb)
 	return (id);
 }
 
-int	closer_max(t_stack* stack, int nb)
+int	closer_max(t_stack *stack, int nb)
 {
 	int	i;
 	int	id;

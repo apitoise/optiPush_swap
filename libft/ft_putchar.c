@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: apitoise <apitoise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/06 11:06:05 by cnotin            #+#    #+#             */
-/*   Updated: 2019/12/06 11:06:16 by cnotin           ###   ########.fr       */
+/*   Created: 2021/04/27 13:58:37 by apitoise          #+#    #+#             */
+/*   Updated: 2021/05/07 17:07:44 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-int	ft_isascii(int c)
+int	ft_putchar(int c)
 {
-	return (c >= 0 && c <= 127);
+	write(1, &c, 1);
+	return (0);
 }

@@ -13,10 +13,10 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-static int	find_closer(int nb, t_stack* stack)
+static int	find_closer(int nb, t_stack *stack)
 {
 	int	id;
-	
+
 	if (stack->name == 'b')
 	{
 		id = closer_min(stack, nb);
@@ -35,7 +35,24 @@ static int	find_closer(int nb, t_stack* stack)
 	}
 }
 
-void		new_rot_min(t_stack* a, t_stack* b)
+static void	get_a_rot_min(t_stack *a, t_stack *b)
+{
+	int	i;
+	int	closer;
+
+	i = 0;
+	while (i < a->len)
+	{
+		closer = find_closer(a->elem[i].nb, b);
+		a->elem[i].rot_min[ROTATE_A] = i;
+		a->elem[i].rot_min[R_ROTATE_A] = a->len - i;
+		a->elem[i].rot_min[ROTATE_B] = b->elem[closer].rot_min[ROTATE_B];
+		a->elem[i].rot_min[R_ROTATE_B] = b->elem[closer].rot_min[R_ROTATE_B];
+		i++;
+	}
+}
+
+void	new_rot_min(t_stack *a, t_stack *b)
 {
 	int	i;
 	int	closer;
@@ -47,16 +64,7 @@ void		new_rot_min(t_stack* a, t_stack* b)
 		b->elem[i].rot_min[R_ROTATE_B] = b->len - i;
 		i++;
 	}
-	i = 0;
-	while (i < a->len)
-	{
-		closer = find_closer(a->elem[i].nb, b);
-		a->elem[i].rot_min[ROTATE_A] = i;
-		a->elem[i].rot_min[R_ROTATE_A] = a->len - i;
-		a->elem[i].rot_min[ROTATE_B] = b->elem[closer].rot_min[ROTATE_B];
-		a->elem[i].rot_min[R_ROTATE_B] = b->elem[closer].rot_min[R_ROTATE_B];
-		i++;
-	}
+	get_a_rot_min(a, b);
 	i = 0;
 	while (i < b->len)
 	{

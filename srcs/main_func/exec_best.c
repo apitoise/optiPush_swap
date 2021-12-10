@@ -1,4 +1,5 @@
-
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   first_part_best.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -12,7 +13,7 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-static void	do_min(int* rot_min, t_stack* src, t_stack* dst)
+static void	do_min(int *rot_min, t_stack *src, t_stack *dst)
 {
 	if (rot_min[0] + rot_min[3] < rot_min[1] + rot_min[2])
 	{
@@ -32,28 +33,13 @@ static void	do_min(int* rot_min, t_stack* src, t_stack* dst)
 		}
 	}
 	else
-	{
-		while (rot_min[1]--)
-		{
-			if (src->name == 'a')
-				do_reverse_rotate(src);
-			else
-				do_reverse_rotate(dst);
-		}
-		while (rot_min[2]--)
-		{
-			if (src->name == 'a')
-				do_rotate(dst);
-			else	
-				do_rotate(src);
-		}
-	}
+		min_bis(rot_min, src, dst);
 }
 
-static void	do_rr(int* rot_min, t_stack* src, t_stack* dst)
+static void	do_rr(int *rot_min, t_stack *src, t_stack *dst)
 {
 	int	nb_double;
-	
+
 	if (rot_min[0] < rot_min[2])
 	{
 		nb_double = rot_min[0];
@@ -68,24 +54,13 @@ static void	do_rr(int* rot_min, t_stack* src, t_stack* dst)
 		}
 	}
 	else
-	{
-		nb_double = rot_min[2];
-		while (rot_min[2]--)
-			double_rotate(src, dst);
-		while (rot_min[0]-- - nb_double)
-		{
-			if (src->name == 'a')
-				do_rotate(src);
-			else
-				do_rotate(dst);
-		}
-	}
+		rr_bis(rot_min, src, dst);
 }
 
-static void	do_rrr(int* rot_min, t_stack* src, t_stack* dst)
+static void	do_rrr(int *rot_min, t_stack *src, t_stack *dst)
 {
 	int	nb_double;
-	
+
 	if (rot_min[1] < rot_min[3])
 	{
 		nb_double = rot_min[1];
@@ -100,21 +75,10 @@ static void	do_rrr(int* rot_min, t_stack* src, t_stack* dst)
 		}
 	}
 	else
-	{
-		nb_double = rot_min[3];
-		while (rot_min[3]--)
-			double_reverse_rotate(src, dst);
-		while (rot_min[1]-- - nb_double)
-		{
-			if (src->name == 'a')
-				do_reverse_rotate(src);
-			else
-				do_reverse_rotate(dst);
-		}
-	}
+		rrr_bis(rot_min, src, dst);
 }
 
-void		exec_best(t_stack* src, t_stack* dst, int id)
+void	exec_best(t_stack *src, t_stack *dst, int id)
 {
 	if (src->elem[id].best == MIN)
 		return (do_min(src->elem[id].rot_min, src, dst));

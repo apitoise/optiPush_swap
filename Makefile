@@ -26,6 +26,7 @@ SRCS = srcs/main_func/main.c \
 		srcs/main_func/algo.c \
 		srcs/main_func/check_arg.c \
 		srcs/main_func/exec_best.c \
+		srcs/main_func/exec_best_bis.c \
 		srcs/utils/clean_exit.c \
 		srcs/utils/ft_atoi_check.c \
 		srcs/utils/ft_error.c \

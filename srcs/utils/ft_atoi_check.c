@@ -15,12 +15,12 @@
 long long	ft_atoi_check(const char *str)
 {
 	long long	res;
-	int				neg;
-	int				pos;
+	int			neg;
+	int			pos;
 
 	pos = 0;
 	while (str[pos] == '\t' || str[pos] == '\n' || str[pos] == '\v'
-			|| str[pos] == '\f' || str[pos] == '\r' || str[pos] == ' ')
+		|| str[pos] == '\f' || str[pos] == '\r' || str[pos] == ' ')
 		pos++;
 	neg = 1;
 	if (str[pos] == '+' || str[pos] == '-')

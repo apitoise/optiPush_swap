@@ -13,7 +13,7 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-void	do_swap(t_stack* stack)
+void	do_swap(t_stack *stack)
 {
 	int	copy;
 
