@@ -13,70 +13,29 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-static int	id_min(t_stack *stack, int nb)
-{
-	int	i;
-	int	id;
-	int	min;
-
-	i = 0;
-	min = stack->elem[0].nb;
-	id = 0;
-	while (i < stack->len)
-	{
-		if (stack->elem[i].nb < min)
-		{
-			min = stack->elem[i].nb;
-			id = i;
-		}
-		i++;
-	}
-	i = 0;
-	while (i < stack->len)
-	{
-		if (stack->elem[i].nb > min && stack->elem[i].nb < nb)
-		{
-			min = stack->elem[i].nb;
-			id = i;
-		}
-		i++;
-	}
-	return (id);
-}
-
-static int	id_max(t_stack* stack)
-{
-	int	i;
-	int	max;
-	int	id;
-
-	i = 0;
-	max = stack->elem[0].nb;
-	id = 0;
-	while (i < stack->len)
-	{
-		if (max < stack->elem[i].nb)
-		{
-			max = stack->elem[i].nb;
-			id = i;
-		}
-		i++;
-	}
-	return (id);
-}
-
-int		find_closer(int nb, t_stack* b)
+static int	find_closer(int nb, t_stack* stack)
 {
 	int	id;
-
-	id = id_min(b, nb);
-	if (nb > b->elem[id].nb)
-		return (id);
+	
+	if (stack->name == 'b')
+	{
+		id = closer_min(stack, nb);
+		if (nb > stack->elem[id].nb)
+			return (id);
+		else
+			return (id_max(stack));
+	}
 	else
-		return (id_max(b));
+	{
+		id = closer_max(stack, nb);
+		if (nb < stack->elem[id].nb)
+			return (id);
+		else
+			return (id_min(stack));
+	}
 }
 
-void	new_rot_min(t_stack* a, t_stack* b)
+void		new_rot_min(t_stack* a, t_stack* b)
 {
 	int	i;
 	int	closer;
@@ -98,5 +57,14 @@ void	new_rot_min(t_stack* a, t_stack* b)
 		a->elem[i].rot_min[R_ROTATE_B] = b->elem[closer].rot_min[R_ROTATE_B];
 		i++;
 	}
+	i = 0;
+	while (i < b->len)
+	{
+		closer = find_closer(b->elem[i].nb, a);
+		b->elem[i].rot_min[ROTATE_A] = a->elem[closer].rot_min[ROTATE_A];
+		b->elem[i].rot_min[R_ROTATE_A] = a->elem[closer].rot_min[R_ROTATE_A];
+		i++;
+	}
 	calculate_best(a);
+	calculate_best(b);
 }

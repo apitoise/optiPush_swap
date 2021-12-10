@@ -32,6 +32,7 @@ SRCS = srcs/main_func/main.c \
 		srcs/utils/is_sort.c \
 		srcs/utils/new_rot_min.c\
 		srcs/utils/calculate_best.c\
+		srcs/utils/get_min_max.c \
 		srcs/actions/do_reverse_rotate.c \
 		srcs/actions/do_rotate.c \
 		srcs/actions/do_push.c \

@@ -13,98 +13,58 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-static void	print_piles(t_stack* a, t_stack* b, int len)
+/*static void	print_piles(t_stack* a, t_stack* b, int len)
 {
 	printf("\n");
 	for(int i = 0; i < len; i++) {
-		printf("[%d] {%d, %d, %d, %d} best: %d best_nbr: %d | [%d]\n", a->elem[i].nb, a->elem[i].rot_min[0], a->elem[i].rot_min[1], a->elem[i].rot_min[2], a->elem[i].rot_min[3], a->elem[i].best, a->elem[i].best_nb, b->elem[i].nb);}
+		printf("[%d] {%d, %d, %d, %d} best: %d best_nbr: %d | [%d] {%d, %d, %d, %d} best: %d best_nbr: %d\n", a->elem[i].nb, a->elem[i].rot_min[0], a->elem[i].rot_min[1], a->elem[i].rot_min[2], a->elem[i].rot_min[3], a->elem[i].best, a->elem[i].best_nb, b->elem[i].nb, b->elem[i].rot_min[0], b->elem[i].rot_min[1], b->elem[i].rot_min[2], b->elem[i].rot_min[3], b->elem[i].best, b->elem[i].best_nb);}
 }
-/*`
-static void	exec_best(t_stack* a, t_stack* b, int id)
+*/
+static void	put_min_on_top(t_stack* stack)
 {
-	int	less;
+	int	opt;
 
-	if (a->elem[id].best == MIN)
+	if (stack->elem[id_min(stack)].rot_min[0]
+	< stack->elem[id_min(stack)].rot_min[1])
 	{
-		if (a->elem[id].rot_min[0] + a->elem[id].rot_min[3]
-			< a->elem[id].rot_min[1] + a->elem[id].rot_min[2])
-		{
-			while (a->elem[id].rot_min[0]--)
-				do_rotate(a);
-			while (a->elem[id].rot_min[3]--)
-				do_reverse_rotate(b);
-		}
-		else
-		{
-			while (a->elem[id].rot_min[1]--)
-				do_reverse_rotate(a);
-			while (a->elem[id].rot_min[2]--)
-				do_rotate(b);
-		}
-	}
-	else if (a->elem[id].best == RR)
-	{
-		if (a->elem[id].rot_min[0] < a->elem[id].rot_min[2])
-		{
-			less = a->elem[id].rot_min[0];
-			while (a->elem[id].rot_min[0]--)
-				double_rotate(a, b);
-			while (a->elem[id].rot_min[2]-- - less)
-				do_rotate(b);
-		}
-		else
-		{
-			less = a->elem[id].rot_min[2];
-			while (a->elem[id].rot_min[2]--)
-				double_rotate(a, b);
-			while (a->elem[id].rot_min[0]-- - less)
-				do_rotate(a);
-		}
+		opt = stack->elem[id_min(stack)].rot_min[0];
+		while (opt--)
+			do_rotate(stack);
 	}
 	else
 	{
-		if (a->elem[id].rot_min[1] < a->elem[id].rot_min[3])
-		{
-			less = a->elem[id].rot_min[1];
-			while (a->elem[id].rot_min[1]--)
-				double_reverse_rotate(a, b);
-			while (a->elem[id].rot_min[3]-- - less)
-				do_reverse_rotate(b);
-		}
-		else
-		{
-			less = a->elem[id].rot_min[3];
-			while (a->elem[id].rot_min[3]--)
-				double_reverse_rotate(a, b);
-			while (a->elem[id].rot_min[1]-- - less)
-				do_reverse_rotate(a);
-		}
+		opt = stack->elem[id_min(stack)].rot_min[1];
+		while (opt--)
+			do_reverse_rotate(stack);
 	}
 }
-*/
-static void	find_best(t_stack* a, t_stack* b)
+
+static void	find_best(t_stack* src, t_stack* dst)
 {
 	int	i;
 	int	opt;
 	int	id;
 
 	i = 0;
-	opt = a->elem[0].best_nb;
+	opt = src->elem[0].best_nb;
 	id = 0;
-	while (i < a->len)
+	while (i < src->len)
 	{
-		if (a->elem[i].best_nb < opt)
+		if (src->elem[i].best_nb < opt)
 		{
-			opt = a->elem[i].best_nb;
+			opt = src->elem[i].best_nb;
 			id = i;
 		}
 		i++;
 	}
-	return (exec_best(a, b, id));
+	return (exec_best(src, dst, id));
 }
 
 void	do_algo(t_stack* a, t_stack* b)
 {
+	int	len;
+
+	len = a->len;
 	do_push(a, b);
 	do_push(a, b);
 	new_rot_min(a, b);
@@ -114,5 +74,11 @@ void	do_algo(t_stack* a, t_stack* b)
 		do_push(a, b);
 		new_rot_min(a, b);
 	}
-	print_piles(a, b, b->len);
+	while (a->len < len)
+	{
+		find_best(b, a);
+		do_push(b, a);
+		new_rot_min(a, b);
+	}
+	put_min_on_top(a);
 }

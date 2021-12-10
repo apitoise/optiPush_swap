@@ -42,17 +42,14 @@ static void	push_swap(t_stack* a, t_stack* b)
 		return ;
 	else if (a->len > 3)
 		do_algo(a, b);
-	if (!is_sort(a, a->len))
-		printf("OK\n");
-	else
-		printf("KO\n");
 }
 
 int			main(int ac, char **av)
 {
 	t_stack	a;
 	t_stack	b;
-
+	
+	printf("%d\n", ac);
 	a.len = 0;
 	b.len = 0;
 	a.name = 'a';

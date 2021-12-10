@@ -13,7 +13,7 @@
 #include "../../header/push_swap.h"
 #include "../../libft/libft.h"
 
-static int	get_min(int min, int rr, int rrr, int* a_best)
+static int	get_min(int min, int rr, int rrr, int* stack_best)
 {
 	int	best;
 
@@ -26,15 +26,15 @@ static int	get_min(int min, int rr, int rrr, int* a_best)
 	else
 		best = min;
 	if (best == min)
-		(*a_best) = MIN;
+		(*stack_best) = MIN;
 	else if (best == rr)
-		(*a_best) = RR;
+		(*stack_best) = RR;
 	else if (best == rrr)
-		(*a_best) = RRR;
+		(*stack_best) = RRR;
 	return (best);
 }
 
-void	calculate_best(t_stack* a)
+void		calculate_best(t_stack* stack)
 {
 	int	rr;
 	int	rrr;
@@ -42,16 +42,16 @@ void	calculate_best(t_stack* a)
 	int	i;
 
 	i = 0;
-	while (i < a->len)
+	while (i < stack->len)
 	{
-		if (a->elem[i].rot_min[0] + a->elem[i].rot_min[3]
-		< a->elem[i].rot_min[1] + a->elem[i].rot_min[2])
-			min = a->elem[i].rot_min[0] + a->elem[i].rot_min[3];
+		if (stack->elem[i].rot_min[0] + stack->elem[i].rot_min[3]
+		< stack->elem[i].rot_min[1] + stack->elem[i].rot_min[2])
+			min = stack->elem[i].rot_min[0] + stack->elem[i].rot_min[3];
 		else
-			min = a->elem[i].rot_min[1] + a->elem[i].rot_min[2];
-		rr = a->elem[i].rot_min[0] + a->elem[i].rot_min[2];
-		rrr = a->elem[i].rot_min[1] + a->elem[i].rot_min[3];
-		a->elem[i].best_nb = get_min(min, rr, rrr, &a->elem[i].best);
+			min = stack->elem[i].rot_min[1] + stack->elem[i].rot_min[2];
+		rr = stack->elem[i].rot_min[0] + stack->elem[i].rot_min[2];
+		rrr = stack->elem[i].rot_min[1] + stack->elem[i].rot_min[3];
+		stack->elem[i].best_nb = get_min(min, rr, rrr, &stack->elem[i].best);
 		i++;
 	}
 }

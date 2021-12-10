@@ -55,6 +55,10 @@ int			clean_exit(t_stack* a, t_stack* b);
 long long	ft_atoi_check(const char* str);
 int			ft_error(void);
 int			is_sort(t_stack* a, int len);
+int			id_max(t_stack* stack);
+int			id_min(t_stack* stack);
+int			closer_max(t_stack* stack, int nb);
+int			closer_min(t_stack* stack, int nb);
 
 void	do_push(t_stack* src, t_stack* dst);
 void	do_rotate(t_stack* stack);
