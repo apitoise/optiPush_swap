@@ -81,4 +81,5 @@ void	do_algo(t_stack* a, t_stack* b)
 		new_rot_min(a, b);
 	}
 	put_min_on_top(a);
+//	print_piles(a, b, len);
 }

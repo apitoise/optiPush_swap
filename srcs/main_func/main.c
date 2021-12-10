@@ -48,8 +48,16 @@ int			main(int ac, char **av)
 {
 	t_stack	a;
 	t_stack	b;
-	
-	printf("%d\n", ac);
+	int		i;
+
+	if (ac == 2)
+	{
+		av = ft_split(av[1], ' ');
+		i = 1;
+		ac = 1;
+		while (av[i++])
+			ac++;
+	}
 	a.len = 0;
 	b.len = 0;
 	a.name = 'a';
