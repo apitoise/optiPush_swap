@@ -6,7 +6,7 @@
 /*   By: apitoise <apitoise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:08:51 by apitoise          #+#    #+#             */
-/*   Updated: 2021/12/09 16:08:51 by apitoise         ###   ########.fr       */
+/*   Updated: 2021/12/14 10:41:56 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static char	**one_param(int *ac, char **av, int *i)
 	(*i) = 1;
 	while (av[(*i)++])
 		(*ac)++;
-	(*i) = 0;
+	(*i) = -1;
 	return (av);
 }
 
@@ -71,6 +71,7 @@ int	main(int ac, char **av)
 	t_stack	b;
 	int		i;
 
+	i = 1;
 	if (ac == 2)
 		av = one_param(&ac, av, &i);
 	a.len = 0;
@@ -84,9 +85,8 @@ int	main(int ac, char **av)
 	if (!(init_stack(&a, &b, av)))
 		return (0);
 	push_swap(&a, &b);
-	if (!i)
+	if (i == -1)
 	{
-		i = -1;
 		while (av[++i])
 			free(av[i]);
 		free(av);

@@ -6,7 +6,7 @@
 #    By: apitoise <apitoise@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 15:46:34 by apitoise          #+#    #+#              #
-#    Updated: 2021/05/28 14:00:49 by apitoise         ###   ########.fr        #
+#    Updated: 2021/12/14 10:34:50 by apitoise         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ INC = header/push_swap.h
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = srcs/main_func/main.c \
+SRCS =		srcs/main_func/main.c \
 		srcs/main_func/algo.c \
 		srcs/main_func/check_arg.c \
 		srcs/main_func/exec_best.c \
@@ -47,6 +47,7 @@ $(NAME): $(OBJS)
 
 clean: 
 		make clean -C libft/
+		rm -rf $(OBJS)
 
 fclean: clean
 		rm -rf $(NAME)
