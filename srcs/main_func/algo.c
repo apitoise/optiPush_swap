@@ -6,7 +6,7 @@
 /*   By: apitoise <apitoise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 17:14:45 by apitoise          #+#    #+#             */
-/*   Updated: 2021/12/14 12:19:50 by apitoise         ###   ########.fr       */
+/*   Updated: 2021/12/14 12:25:37 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	do_algo(t_stack *a, t_stack *b)
 {
 	int	len;
 
-	if (is_sort(a, a->len))
+	if (!is_sort(a, a->len))
 		return ;
 	len = a->len;
 	do_push(a, b);
