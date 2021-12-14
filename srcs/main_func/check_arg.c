@@ -6,7 +6,7 @@
 /*   By: apitoise <apitoise@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 11:52:41 by apitoise          #+#    #+#             */
-/*   Updated: 2021/05/18 16:32:11 by apitoise         ###   ########.fr       */
+/*   Updated: 2021/12/14 12:17:03 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ static int	check_doublon(int arg_nb, char **args)
 		j = i + 1;
 		while (j < arg_nb)
 		{
-			if (args[i] == args[j])
-			{
-				ft_error();
+			if (!ft_strcmp(args[i], args[j]))
 				return (1);
-			}
 			else
 				j++;
 		}
